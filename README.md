@@ -5,7 +5,7 @@ This is a web-based Employee Management System built with Flask and SQLite. It a
 ## Setup Instructions
 
 1. **Clone the Repository**
-   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/praveennani384/Workforce-SQL-Manager)
+   git clone https://github.com/praveennani384/Workforce-SQL-Manager
    cd your-repo-name
 
 2. **Install Dependencies**
