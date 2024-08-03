@@ -33,15 +33,6 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 Praveen Kumar K
 
-### Additional Steps:
-
-1. **Create a `requirements.txt` file** with the necessary dependencies. You can generate it using:
-
-   pip freeze > requirements.txt
-
-
-2. **Create a `LICENSE` file** with the following content:
-
    MIT License
 
    Copyright (c) 2024 Praveen Kumar K
