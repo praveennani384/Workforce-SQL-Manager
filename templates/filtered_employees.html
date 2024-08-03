@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filtered Employees</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .employee {
+            margin-bottom: 15px;
+        }
+        .employee h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+        .employee p {
+            margin: 5px 0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const employeesJson = '{{ employees_json | tojson | safe }}';
+            const employees = JSON.parse(employeesJson);
+            const container = document.getElementById('employees-container');
+
+            if (employees.length > 0) {
+                employees.forEach(employee => {
+                    const div = document.createElement('div');
+                    div.className = 'employee';
+                    div.innerHTML = `
+                        <h2>Employee ID: ${employee.id}</h2>
+                        <p><strong>Name:</strong> ${employee.name}</p>
+                        <p><strong>Position:</strong> ${employee.position}</p>
+                        <p><strong>Salary:</strong> $${employee.salary}</p>
+                    `;
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = '<p>No filtered data available.</p>';
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Filtered Employees</h1>
+    
+    <div id="employees-container"></div>
+    
+    <form action="{{ url_for('export_filtered_employees') }}" method="post">
+        <input type="hidden" name="employees" value="{{ employees_json }}">
+        <input type="submit" value="Export to CSV">
+    </form>
+
+    <a href="{{ url_for('filter_employees') }}">Back to Filter</a>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Employees</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        form input[type="hidden"] {
+            display: none;
+        }
+
+        .home-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Filter Employees</h1>
+    <form method="POST">
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position">
+        
+        <label for="salary_gt">Salary Greater Than:</label>
+        <input type="number" id="salary_gt" name="salary_gt" step="0.01">
+        
+        <label for="salary_lt">Salary Less Than:</label>
+        <input type="number" id="salary_lt" name="salary_lt" step="0.01">
+        
+        <label for="order_by">Order By:</label>
+        <select id="order_by" name="order_by">
+            <option value="">None</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+        </select>
+        
+        <button type="submit">Filter</button>
+    </form>
+
+    {% if employees %}
+        <h2>Filtered Employees</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Salary</th>
+            </tr>
+            {% for emp in employees %}
+                <tr>
+                    <td>{{ emp.id }}</td>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.position }}</td>
+                    <td>{{ emp.salary }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <form method="POST" action="{{ url_for('export_filtered_employees') }}" target="_blank">
+            <input type="hidden" name="employees" value="{{ employees_json }}">
+            <button type="submit">Export to CSV</button>
+        </form>
+    {% endif %}
+
+    <a href="{{ url_for('index') }}" class="home-button">Home</a>
+</body>
+</html>

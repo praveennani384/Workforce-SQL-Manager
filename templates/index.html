@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            margin: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 50px auto; /* Adds space above and below the list */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 600px; /* Limits the width of the list */
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            padding: 12px 24px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            display: inline-block;
+        }
+
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        @media (min-width: 600px) {
+            ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            li {
+                margin: 10px;
+            }
+
+            a {
+                padding: 12px 24px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+    <ul>
+        <li><a href="{{ url_for('add_employee') }}">Add Employee</a></li>
+        <li><a href="{{ url_for('remove_employee') }}">Remove Employee</a></li>
+        <li><a href="{{ url_for('promote_employee') }}">Promote Employee</a></li>
+        <li><a href="{{ url_for('display_employees') }}">Display Employees</a></li>
+        <li><a href="{{ url_for('find_employee') }}">Find Employee</a></li>
+        <li><a href="{{ url_for('filter_employees') }}">Filter Employees</a></li>
+    </ul>
+</body>
+</html>
