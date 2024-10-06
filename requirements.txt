@@ -2,3 +2,4 @@ SQLAlchemy==1.4.23
 gunicorn==20.1.0
 Flask==2.3.2  # You can use a recent version of Flask
 Werkzeug==2.3.4  # This should be compatible with Flask
+streamlit==0.84.0
